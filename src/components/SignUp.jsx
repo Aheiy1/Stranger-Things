@@ -18,6 +18,9 @@ const SignUp = ({ setToken }) => {
       setToken(result.data.token);
     } catch (error) {
       console.error("Error: ", error);
+    } finally {
+      setUsername("");
+      setPassword("");
     }
   };
 

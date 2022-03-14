@@ -15,11 +15,13 @@ const Post = () => {
     <>
       <h1>Posts</h1>
       {posts.map((post, i) => {
-        console.log("Post: ", post);
+        // console.log("Post: ", post);
         return (
           <div key={i}>
             <h3>{post.title}</h3>
             <div>{post.description}</div>
+            <div>{post.price}</div>
+            <div>{post.willDeliver}</div>
           </div>
         );
       })}
