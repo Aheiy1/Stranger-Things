@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { fetchLoginResults } from "../api/users";
+import { registerUser } from "../api/users";
 
-const Login = ({ setToken }) => {
+const SignUp = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -9,7 +9,7 @@ const Login = ({ setToken }) => {
     e.preventDefault();
 
     try {
-      const result = await fetchLoginResults(username, password);
+      const result = await registerUser(username, password);
       if (result.success) {
         //Display Error
       }
@@ -23,7 +23,7 @@ const Login = ({ setToken }) => {
 
   return (
     <div>
-      <form id="userQuery" onSubmit={userSubmit}>
+      <form id="newUser" onSubmit={userSubmit}>
         <input
           type="text"
           placeholder="Username"
@@ -36,10 +36,10 @@ const Login = ({ setToken }) => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         ></input>
-        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
