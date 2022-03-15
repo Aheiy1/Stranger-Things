@@ -21,8 +21,8 @@ const Post = ({ setToken, postId, setPostId }) => {
         // <CreatePost setToken={setToken} setPosts={setPosts} posts={posts} />
         <Link to="CreatePost">
           <button type="button">Create Post</button>
-          </Link>
-      ) : null }
+        </Link>
+      ) : null}
       {posts.map((post, i) => {
         console.log("Post: ", post);
         return (
@@ -41,7 +41,11 @@ const Post = ({ setToken, postId, setPostId }) => {
                   posts={posts}
                   setPosts={setPosts}
                 />
-              ) : null /*message toggle*/
+              ) : null /*<button type= "button"><WriteMessage setToken={setToken}
+              post={post}
+              postId={post._id}
+              posts={posts}
+              setPosts={setPosts} /></button>*/
             }
           </div>
         );

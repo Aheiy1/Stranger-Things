@@ -48,3 +48,25 @@ export const removePost = async (postId, token) => {
   console.log("removePost: ", data);
   return data;
 };
+
+export const sendMessage = async (postId, token) => {
+  const response = await fetch(
+    `${BASE_URL}/api${key}/posts/${postId}/messages`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        message: {
+          content: "Do you still have this?  Would you take $10 less?",
+        },
+      }),
+    }
+  );
+  const data = await response.json();
+  console.log(data, "data");
+
+  return data;
+};
