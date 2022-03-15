@@ -7,7 +7,13 @@ export const fetchPosts = async () => {
   return data.posts;
 };
 
-export const newPost = async (token, title, description, price, willDeliver) => {
+export const newPost = async (
+  token,
+  title,
+  description,
+  price,
+  willDeliver,
+) => {
   const response = await fetch(`${BASE_URL}/api${key}/posts`, {
     method: "POST",
     headers: {
@@ -19,11 +25,13 @@ export const newPost = async (token, title, description, price, willDeliver) => 
         title,
         description,
         price,
-        willDeliver
+        willDeliver,
       },
     }),
   });
-  const { data } = await response.json()
-  console.log('data', data);
-  return data.post
+   const data = await response.json();
+  console.log(data, "data");
+ 
+  return data;
+
 };

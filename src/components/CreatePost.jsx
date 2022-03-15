@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { fetchPosts, newPost } from "../api/posts";
+import { newPost } from "../api/posts";
 
-const CreatePost = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const CreatePost = ({posts, setPosts}) => {
+  const [title, setTitle] = useState([]);
+  const [description, setDescription] = useState([]);
   const [price, setPrice] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
 
@@ -19,10 +19,10 @@ const CreatePost = () => {
         price,
         willDeliver
       );
-
       console.log(result, "result");
       if (result.success) {
         //Display Error
+        setPosts([result.data.post, ...posts]);
       }
     } catch (error) {
       console.error("Error: ", error);

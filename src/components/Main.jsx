@@ -16,8 +16,8 @@ const Main = () => {
     <div>
       <Login setToken={setToken} />
       <SignUp setToken={setToken} />
-      <CreatePost setToken={setToken}/>
-      <Posts />
+     
+      <Posts setToken={setToken} />
     </div>
   );
 };
