@@ -32,7 +32,7 @@ const Main = ({ posts, setPosts }) => {
           </>
         ) : (
           <Link to="/LogOut">
-            <button type="button">LogOut</button>
+            <LogOut />
           </Link>
         )}
       </nav>
@@ -42,9 +42,6 @@ const Main = ({ posts, setPosts }) => {
         </Route>
         <Route path="/SignUp">
           <SignUp setToken={setToken} />
-        </Route>
-        <Route path="/LogOut">
-          <LogOut />
         </Route>
         <Route path="/CreatePost">
           <CreatePost setToken={setToken} setPosts={setPosts} posts={posts} />

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { registerUser } from "../api/users";
+import { useHistory } from "react-router-dom";
 
 const SignUp = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  let history = useHistory();
   const userSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,6 +22,7 @@ const SignUp = ({ setToken }) => {
     } finally {
       setUsername("");
       setPassword("");
+      history.push("/");
     }
   };
 

@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 import { newPost } from "../api/posts";
+import { useHistory } from "react-router-dom";
 
 const CreatePost = ({ posts, setPosts }) => {
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
   const [price, setPrice] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
+  let history = useHistory();
+  // const isChecked = () => {
+  //   let checkbox = document.querySelector("#willDeliver");
+  //   if (checkbox) {
+  //     let query = setWillDeliver(true);
+  //     console.log(query, "query");
+  //     return query;
+  //   }
+  // };
 
   const userSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      // isChecked();
       console.log(localStorage.getItem("token"));
       const result = await newPost(
         localStorage.getItem("token"),
@@ -18,7 +29,9 @@ const CreatePost = ({ posts, setPosts }) => {
         description,
         price,
         willDeliver
+
       );
+      console.log(willDeliver, "will you deliver")
       console.log(result, "result");
       if (result.success) {
         //Display Error
@@ -31,6 +44,7 @@ const CreatePost = ({ posts, setPosts }) => {
       setDescription("");
       setPrice("");
       setWillDeliver(false);
+      history.push("/");
     }
   };
   return (
@@ -57,7 +71,12 @@ const CreatePost = ({ posts, setPosts }) => {
             onChange={(event) => setPrice(event.target.value)}
           />
         </span>
-        <input type="checkbox" id="willDeliver" value={willDeliver}></input>
+        <input
+          type="checkbox"
+          id="willDeliver"
+          value={willDeliver}
+          onChange={(event) => setWillDeliver(event.target.checked)}
+        ></input>
         <label> Will Deliver?</label>
         <button type="submit">Submit</button>
       </form>

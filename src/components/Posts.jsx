@@ -19,7 +19,9 @@ const Post = ({ setToken, postId, setPostId }) => {
       <h1>Posts</h1>
       {localStorage.getItem("token") ? (
         // <CreatePost setToken={setToken} setPosts={setPosts} posts={posts} />
-        <Link to="CreatePost">CreatePost</Link>
+        <Link to="CreatePost">
+          <button type="button">Create Post</button>
+          </Link>
       ) : null }
       {posts.map((post, i) => {
         console.log("Post: ", post);
