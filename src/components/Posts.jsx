@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { fetchPosts } from "../api/posts";
 import CreatePost from "./CreatePost";
 import DeletePost from "./DeletePost";
@@ -16,7 +17,10 @@ const Post = ({ setToken, postId, setPostId }) => {
   return (
     <>
       <h1>Posts</h1>
-      <CreatePost setToken={setToken} setPosts={setPosts} posts={posts} />
+      {localStorage.getItem("token") ? (
+        // <CreatePost setToken={setToken} setPosts={setPosts} posts={posts} />
+        <Link to="CreatePost">CreatePost</Link>
+      ) : null }
       {posts.map((post, i) => {
         console.log("Post: ", post);
         return (
