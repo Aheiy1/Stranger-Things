@@ -35,3 +35,15 @@ export const registerUser = async (username, password) => {
   console.log(data);
   return data;
 };
+
+export const getUserId = async (token) => {
+  const response = await fetch(`${BASE_URL}/api${key}/users/me`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await response.json();
+  console.log(data);
+  return data.data._id;
+};

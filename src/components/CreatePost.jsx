@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { newPost } from "../api/posts";
 
-const CreatePost = ({posts, setPosts}) => {
+const CreatePost = ({ posts, setPosts }) => {
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
   const [price, setPrice] = useState("");
@@ -49,19 +49,16 @@ const CreatePost = ({posts, setPosts}) => {
           onChange={(event) => setDescription(event.target.value)}
         ></input>
         <span className="input">
-          &#36;
           <input
             name="price"
-            type="number"
-            step="0.01"
-            min="0"
+            type="text"
             placeholder="price"
             value={price}
             onChange={(event) => setPrice(event.target.value)}
           />
         </span>
         <input type="checkbox" id="willDeliver" value={willDeliver}></input>
-        <label for="willDeliver"> Will Deliver?</label>
+        <label> Will Deliver?</label>
         <button type="submit">Submit</button>
       </form>
     </div>

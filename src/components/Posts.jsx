@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { fetchPosts } from "../api/posts";
 import CreatePost from "./CreatePost";
+import DeletePost from "./DeletePost";
 
-const Post = ({setToken}) => {
+const Post = ({ setToken, postId, setPostId }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const getAllPosts = async () => {
       const allPosts = await fetchPosts();
-      setPosts(allPosts);
+      setPosts(allPosts.reverse());
     };
     getAllPosts();
   }, []);
   return (
     <>
       <h1>Posts</h1>
-      <CreatePost setToken={setToken} setPosts={setPosts} posts={posts}/>
+      <CreatePost setToken={setToken} setPosts={setPosts} posts={posts} />
       {posts.map((post, i) => {
         console.log("Post: ", post);
         return (
@@ -24,6 +25,18 @@ const Post = ({setToken}) => {
             <div>{post.description}</div>
             <div>{post.price}</div>
             <div>{post.willDeliver}</div>
+            {
+              localStorage.getItem("username") === post.author.username ? (
+                /*<EditPost setToken={setToken} post={post} postId={post._id} />*/
+                <DeletePost
+                  setToken={setToken}
+                  post={post}
+                  postId={post._id}
+                  posts={posts}
+                  setPosts={setPosts}
+                />
+              ) : null /*message toggle*/
+            }
           </div>
         );
       })}

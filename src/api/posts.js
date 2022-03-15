@@ -12,7 +12,7 @@ export const newPost = async (
   title,
   description,
   price,
-  willDeliver,
+  willDeliver
 ) => {
   const response = await fetch(`${BASE_URL}/api${key}/posts`, {
     method: "POST",
@@ -29,9 +29,22 @@ export const newPost = async (
       },
     }),
   });
-   const data = await response.json();
+  const data = await response.json();
   console.log(data, "data");
- 
-  return data;
 
+  return data;
+};
+export const removePost = async (postId, token) => {
+  console.log("PostId: ", postId);
+  console.log(`${BASE_URL}/api${key}/posts/${postId}`);
+  const response = await fetch(`${BASE_URL}/api${key}/posts/${postId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await response.json();
+  console.log("removePost: ", data);
+  return data;
 };

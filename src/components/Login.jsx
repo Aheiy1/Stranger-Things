@@ -12,15 +12,16 @@ const Login = ({ setToken }) => {
       const result = await fetchLoginResults(username, password);
       if (result.success) {
         //Display Error
+        localStorage.setItem("username", username);
+        localStorage.setItem("token", result.data.token);
+        setToken(result.data.token);
       }
-      localStorage.setItem("token", result.data.token);
       console.log(result);
-      setToken(result.data.token);
     } catch (error) {
       console.error("Error: ", error);
     } finally {
-      setUsername('')
-      setPassword('')
+      setUsername("");
+      setPassword("");
     }
   };
 
