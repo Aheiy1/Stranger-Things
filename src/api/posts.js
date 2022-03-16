@@ -51,7 +51,7 @@ export const removePost = async (postId, token) => {
   return data;
 };
 
-export const sendMessage = async (postId, token) => {
+export const sendMessage = async (postId, token, message) => {
   const response = await fetch(
     `${BASE_URL}/api${key}/posts/${postId}/messages`,
     {
@@ -61,9 +61,7 @@ export const sendMessage = async (postId, token) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        message: {
-          content: "Do you still have this?  Would you take $10 less?",
-        },
+        message
       }),
     }
   );

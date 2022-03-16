@@ -10,7 +10,7 @@ import CreatePost from "./CreatePost";
 import Profile from "./Profile";
 import { fetchUser } from "../api/users";
 import { fetchPosts } from "../api/posts";
-
+import WriteMessage from "./WriteMessage";
 const Main = () => {
   const [token, setToken] = useState("");
   const [postId, setPostId] = useState(null);
@@ -71,11 +71,14 @@ const Main = () => {
         <Route path="/Profile">
           <Profile posts={posts} setPosts={setPosts} userObj={userObj} />
         </Route>
-        {/*IS THIS ACCURATE??? <Route path="/WriteMessage"><WriteMessage setToken={setToken}
-              post={post}
-              postId={post._id}
-              posts={posts}
-              setPosts={setPosts} /></Route> */}
+        {/* <Route path="/WriteMessage">
+          <WriteMessage
+            setToken={setToken}
+            postId={post._id}
+            posts={posts}
+            setPosts={setPosts}
+          />
+        </Route> */}
         <Route path="/">
           <Posts
             setToken={setToken}
