@@ -6,6 +6,7 @@ const CreatePost = ({ posts, setPosts }) => {
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
   const [price, setPrice] = useState("");
+  const [location, setLocation] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
   let history = useHistory();
   // const isChecked = () => {
@@ -28,10 +29,10 @@ const CreatePost = ({ posts, setPosts }) => {
         title,
         description,
         price,
+        location,
         willDeliver
-
       );
-      console.log(willDeliver, "will you deliver")
+      console.log(willDeliver, "will you deliver");
       console.log(result, "result");
       if (result.success) {
         //Display Error
@@ -69,6 +70,15 @@ const CreatePost = ({ posts, setPosts }) => {
             placeholder="price"
             value={price}
             onChange={(event) => setPrice(event.target.value)}
+          />
+        </span>
+        <span className="input">
+          <input
+            name="location"
+            type="text"
+            placeholder="location"
+            value={location}
+            onChange={(event) => setLocation(event.target.value)}
           />
         </span>
         <input

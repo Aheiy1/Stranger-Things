@@ -14,7 +14,6 @@ export const fetchLoginResults = async (username, password) => {
     }),
   });
   const data = await response.json();
-  console.log(data);
   return data;
 };
 
@@ -32,11 +31,10 @@ export const registerUser = async (username, password) => {
     }),
   });
   const data = await response.json();
-  console.log(data);
   return data;
 };
 
-export const getUserId = async (token) => {
+export const fetchUser = async (token) => {
   const response = await fetch(`${BASE_URL}/api${key}/users/me`, {
     headers: {
       "Content-Type": "application/json",
@@ -44,6 +42,5 @@ export const getUserId = async (token) => {
     },
   });
   const data = await response.json();
-  console.log(data);
-  return data.data._id;
+  return data;
 };

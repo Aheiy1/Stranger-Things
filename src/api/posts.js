@@ -12,6 +12,7 @@ export const newPost = async (
   title,
   description,
   price,
+  location,
   willDeliver
 ) => {
   const response = await fetch(`${BASE_URL}/api${key}/posts`, {
@@ -25,6 +26,7 @@ export const newPost = async (
         title,
         description,
         price,
+        location,
         willDeliver,
       },
     }),

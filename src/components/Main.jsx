@@ -8,14 +8,35 @@ import { Link, Route } from "react-router-dom";
 import { Switch, useHistory } from "react-router-dom";
 import CreatePost from "./CreatePost";
 import Profile from "./Profile";
+import { fetchUser } from "../api/users";
+import { fetchPosts } from "../api/posts";
 
-const Main = ({ posts, setPosts }) => {
+const Main = () => {
   const [token, setToken] = useState("");
   const [postId, setPostId] = useState(null);
+  const [userObj, setUserObj] = useState({});
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    console.log(token);
+    const storedToken = localStorage.getItem("token");
+    async function getUser() {
+      const data = await fetchUser(storedToken);
+      setUserObj(data.data);
+    }
+    if (storedToken) {
+      setToken(storedToken);
+      getUser();
+    }
   }, [token]);
+
+  useEffect(() => {
+    const getAllPosts = async () => {
+      const allPosts = await fetchPosts();
+      setPosts(allPosts.reverse());
+    };
+    getAllPosts();
+    console.log("Main posts: ", posts);
+  }, []);
 
   return (
     <>
@@ -48,7 +69,7 @@ const Main = ({ posts, setPosts }) => {
           <CreatePost setToken={setToken} setPosts={setPosts} posts={posts} />
         </Route>
         <Route path="/Profile">
-          <Profile posts={posts} setPosts={setPosts} />
+          <Profile posts={posts} setPosts={setPosts} userObj={userObj} />
         </Route>
         {/*IS THIS ACCURATE??? <Route path="/WriteMessage"><WriteMessage setToken={setToken}
               post={post}
@@ -56,7 +77,13 @@ const Main = ({ posts, setPosts }) => {
               posts={posts}
               setPosts={setPosts} /></Route> */}
         <Route path="/">
-          <Posts setToken={setToken} postId={postId} setPostId={setPostId} />
+          <Posts
+            setToken={setToken}
+            postId={postId}
+            setPostId={setPostId}
+            posts={posts}
+            setPosts={setPosts}
+          />
         </Route>
       </Switch>
       <div>

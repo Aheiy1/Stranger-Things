@@ -4,16 +4,16 @@ import { fetchPosts } from "../api/posts";
 import CreatePost from "./CreatePost";
 import DeletePost from "./DeletePost";
 
-const Post = ({ setToken, postId, setPostId }) => {
-  const [posts, setPosts] = useState([]);
+const Post = ({ setToken, postId, setPostId, posts, setPosts }) => {
+  // const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    const getAllPosts = async () => {
-      const allPosts = await fetchPosts();
-      setPosts(allPosts.reverse());
-    };
-    getAllPosts();
-  }, []);
+  // useEffect(() => {
+  //   const getAllPosts = async () => {
+  //     const allPosts = await fetchPosts();
+  //     setPosts(allPosts.reverse());
+  //   };
+  //   getAllPosts();
+  // }, []);
   return (
     <>
       <h1>Posts</h1>
@@ -28,9 +28,11 @@ const Post = ({ setToken, postId, setPostId }) => {
         return (
           <div key={i}>
             <h3>{post.title}</h3>
+            <h4>{post.author.username}</h4>
             <div>{post.description}</div>
             <div>{post.price}</div>
-            <div>{post.willDeliver}</div>
+            <div>{post.location}</div>
+            <div>{post.willDeliver ? "Will Deliver" : "Will Not Deliver"}</div>
             {
               localStorage.getItem("username") === post.author.username ? (
                 /*<EditPost setToken={setToken} post={post} postId={post._id} />*/

@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import DeletePost from "./DeletePost";
 
 //messages should be displayed
 //  link to post message is from
 
 //WHY IS THIS NOT WORKING??!?
-const Profile = ({ posts, setPosts, postId }) => {
-  const filteredResult = posts.filter(
-    (post) => post.author.username === localStorage.getItem("username")
-  );
+const Profile = ({ setToken, post, posts, setPosts, postId, userObj }) => {
+  const [myPosts, setMyPosts] = useState([]);
+  console.log(post);
+  useEffect(() => {
+    makeMyPosts();
+  }, []);
 
-  console.log(filteredResult);
-  setPosts(filteredResult);
+  const makeMyPosts = () => {
+    const storedName = localStorage.getItem("username");
+    const filteredResult = posts.filter(
+      (post) => post.author.username === `${storedName}`
+    );
+    setMyPosts(filteredResult);
+  };
 
   return (
     <>
@@ -19,7 +27,28 @@ const Profile = ({ posts, setPosts, postId }) => {
           {`Welcome ${localStorage.getItem("username")}`}
         </h1>
         <h2>{"Messages to me:"}</h2>
-        {/* {{ filteredResult }} */}
+        {myPosts.map((myPost) => {
+          return (
+            <>
+              <div key={myPost._id}>
+                <h3>{myPost.title}</h3>
+                <h4>{myPost.author.username}</h4>
+                <div>{myPost.description}</div>
+                <div>{myPost.price}</div>
+                <div>{myPost.location}</div>
+                <div>
+                  {myPost.willDeliver ? "Will Deliver" : "Will Not Deliver"}
+                </div>
+                <DeletePost
+                  post={myPost}
+                  postId={myPost._id}
+                  posts={myPosts}
+                  setPosts={setMyPosts}
+                />
+              </div>
+            </>
+          );
+        })}
       </div>
     </>
   );
