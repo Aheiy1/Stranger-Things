@@ -3,11 +3,9 @@ import { getUserId } from "../api/users";
 import { removePost } from "../api/posts";
 
 const DeletePost = ({ posts, setPosts, postId }) => {
-  //   console.log("postId delete component: ", postId);
   const storedToken = localStorage.getItem("token");
   const handleDelete = async () => {
     try {
-      // console.log('postIdToDelete: '. postIdToDelete)
       const result = await removePost(postId, storedToken);
       console.log("removePost result: ", result);
       if (result.success) {

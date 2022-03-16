@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import DeletePost from "./DeletePost";
+import { DeletePost } from "./index.js";
 
 //messages should be displayed
 //  link to post message is from
 
-//WHY IS THIS NOT WORKING??!?
 const Profile = ({ setToken, post, posts, setPosts, postId, userObj }) => {
   const [myPosts, setMyPosts] = useState([]);
-  console.log(post);
   useEffect(() => {
     makeMyPosts();
   }, []);

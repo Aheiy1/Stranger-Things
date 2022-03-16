@@ -13,7 +13,7 @@ const WriteMessage = ({ postId, token, setWriteMessage, writeMessage }) => {
       if (result.success) {
         //popup your message was sent
       }
-      setWriteMessage({ idx: null, button: !button })
+      setWriteMessage({ idx: null, button: !button });
     } catch (error) {
       //popup could not deliver message}
     }
@@ -26,24 +26,26 @@ const WriteMessage = ({ postId, token, setWriteMessage, writeMessage }) => {
   };
   return (
     <div>
-      {ternaryFunction() ? (
-        <button
-          type="button"
-          onClick={() => setWriteMessage({ idx: postId, button: !button })}
-        >
-          Message
-        </button>
-      ) : (
-        <form id="message" onSubmit={userSubmit}>
-          <input
-            type="text"
-            placeholder="Write your message here"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          ></input>
-          <button type="submit">Submit</button>
-        </form>
-      )}
+      {localStorage.getItem("token") ? (
+        ternaryFunction() ? (
+          <button
+            type="button"
+            onClick={() => setWriteMessage({ idx: postId, button: !button })}
+          >
+            Message
+          </button>
+        ) : (
+          <form id="message" onSubmit={userSubmit}>
+            <input
+              type="text"
+              placeholder="Write your message here"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            ></input>
+            <button type="submit">Submit</button>
+          </form>
+        )
+      ) : null}
     </div>
   );
 };

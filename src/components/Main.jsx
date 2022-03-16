@@ -1,16 +1,19 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Login from "./Login";
-import Posts from "./Posts";
-import SignUp from "./SignUp";
-import LogOut from "./LogOut";
-import { Link, Route } from "react-router-dom";
-import { Switch, useHistory } from "react-router-dom";
-import CreatePost from "./CreatePost";
-import Profile from "./Profile";
+import {
+  Login,
+  Posts,
+  SignUp,
+  LogOut,
+  CreatePost,
+  Profile,
+  WriteMessage,
+  Navbar,
+} from "./index.js";
+import { Switch, useHistory, Link, Route } from "react-router-dom";
 import { fetchUser } from "../api/users";
 import { fetchPosts } from "../api/posts";
-import WriteMessage from "./WriteMessage";
+
 const Main = () => {
   const [token, setToken] = useState("");
   const [postId, setPostId] = useState(null);
@@ -40,24 +43,7 @@ const Main = () => {
 
   return (
     <>
-      <nav className="nav-bar">
-        <Link to="/">Home</Link>
-        <Link to="/Profile">Profile</Link>
-        {!localStorage.getItem("token") ? (
-          <>
-            <Link to="/Login">
-              <button type="button">Login</button>
-            </Link>
-            <Link to="/SignUp">
-              <button type="button">SignUp</button>
-            </Link>
-          </>
-        ) : (
-          <Link to="/LogOut">
-            <LogOut />
-          </Link>
-        )}
-      </nav>
+      <Navbar />
       <Switch>
         <Route path="/Login">
           <Login setToken={setToken} />
@@ -71,14 +57,6 @@ const Main = () => {
         <Route path="/Profile">
           <Profile posts={posts} setPosts={setPosts} userObj={userObj} />
         </Route>
-        {/* <Route path="/WriteMessage">
-          <WriteMessage
-            setToken={setToken}
-            postId={post._id}
-            posts={posts}
-            setPosts={setPosts}
-          />
-        </Route> */}
         <Route path="/">
           <Posts
             setToken={setToken}
@@ -89,16 +67,6 @@ const Main = () => {
           />
         </Route>
       </Switch>
-      <div>
-        {/* <LogOut />
-       
-          <Login setToken={setToken} />
-     
-
-        <SignUp setToken={setToken} />
-
-        <Posts setToken={setToken} postId={postId} setPostId={setPostId} /> */}
-      </div>
     </>
   );
 };

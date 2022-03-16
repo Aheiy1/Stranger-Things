@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { CreatePost, DeletePost, WriteMessage } from "./index.js";
 import { fetchPosts } from "../api/posts";
-import CreatePost from "./CreatePost";
-import DeletePost from "./DeletePost";
-import WriteMessage from "./WriteMessage";
 
 const Post = ({
   setToken,
@@ -31,7 +29,6 @@ const Post = ({
     <>
       <h1>Posts</h1>
       {localStorage.getItem("token") ? (
-        // <CreatePost setToken={setToken} setPosts={setPosts} posts={posts} />
         <Link to="CreatePost">
           <button type="button">Create Post</button>
         </Link>
