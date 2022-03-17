@@ -38,9 +38,9 @@ const Main = () => {
       setPosts(allPosts.reverse());
     };
     getAllPosts();
-    console.log("Main posts: ", posts);
+    // console.log("Main posts: ", posts);
   }, []);
-
+// console.log(posts, "posts")
   return (
     <>
       <Navbar />

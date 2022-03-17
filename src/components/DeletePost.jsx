@@ -19,7 +19,7 @@ const DeletePost = ({ posts, setPosts, postId }) => {
   };
 
   return (
-    <div>
+    <div className="cardBtn">
       <button type="button" className="deleteButton" onClick={handleDelete}>
         Delete
       </button>

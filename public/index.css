@@ -32,7 +32,8 @@ nav {
 .cardField {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  gap: 1rem;
+  justify-content: left;
 }
 .postCard {
   display: flex;
@@ -66,7 +67,7 @@ nav {
   font-size: small;
 }
 
-#message {
+.cardBtn{
   display: flex;
   align-items: flex-end;
   justify-content: center;

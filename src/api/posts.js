@@ -7,6 +7,21 @@ export const fetchPosts = async () => {
   return data.posts;
 };
 
+export const fetchMyPosts = async () => {
+  const token = localStorage.getItem("token")
+  const response = await fetch(`${BASE_URL}/api${key}/posts`,{
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const { data } = await response.json();
+  console.log(data.posts, "data posts")
+  return data.posts;
+};
+
 export const newPost = async (
   token,
   title,
