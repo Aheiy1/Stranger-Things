@@ -33,35 +33,39 @@ const Post = ({
           <button type="button">Create Post</button>
         </Link>
       ) : null}
-      {posts.map((post, i) => {
-        console.log("Post: ", post);
-        return (
-          <div key={i}>
-            <h3>{post.title}</h3>
-            <h4>{post.author.username}</h4>
-            <div>{post.description}</div>
-            <div>{post.price}</div>
-            <div>{post.location}</div>
-            <div>{post.willDeliver ? "Will Deliver" : "Will Not Deliver"}</div>
-            {localStorage.getItem("username") === post.author.username ? (
-              /*<EditPost setToken={setToken} post={post} postId={post._id} />*/
-              <DeletePost
-                setToken={setToken}
-                post={post}
-                postId={post._id}
-                posts={posts}
-                setPosts={setPosts}
-              />
-            ) : (
-              <WriteMessage
-                postId={post._id}
-                writeMessage={writeMessage}
-                setWriteMessage={setWriteMessage}
-              />
-            )}
-          </div>
-        );
-      })}
+      <div class="cardField">
+        {posts.map((post, i) => {
+          console.log("Post: ", post);
+          return (
+            <div class="postCard" key={i}>
+              <div class="title">{post.title}</div>
+              <div class="author">{post.author.username}</div>
+              <div class="description">{post.description}</div>
+              <div class="price">{post.price}</div>
+              <div class="location">{post.location}</div>
+              <div class="willDeliver">
+                {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
+              </div>
+              {localStorage.getItem("username") === post.author.username ? (
+                /*<EditPost setToken={setToken} post={post} postId={post._id} />*/
+                <DeletePost
+                  setToken={setToken}
+                  post={post}
+                  postId={post._id}
+                  posts={posts}
+                  setPosts={setPosts}
+                />
+              ) : (
+                <WriteMessage
+                  postId={post._id}
+                  writeMessage={writeMessage}
+                  setWriteMessage={setWriteMessage}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };
