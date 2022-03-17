@@ -16,17 +16,57 @@ const Post = ({
     idx: undefined,
     button: true,
   });
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState([]);
+
+  function postMatches(post, text) {
+    if (
+      post.title.toLowerCase().includes(text.toLowerCase()) ||
+      post.description.toLowerCase().includes(text.toLowerCase()) ||
+      post.author.username.includes(text)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+
+    // return true if any of the fields you want to check against include the text
+    // strings have an .includes() method
+  }
+
+  const postsToDisplay = filteredPosts.length ? filteredPosts : posts;
+
+  // then, in our jsx below... map over postsToDisplay instead of posts
+
   // const [posts, setPosts] = useState([]);
 
-  // useEffect(() => {
-  //   const getAllPosts = async () => {
-  //     const allPosts = await fetchPosts();
-  //     setPosts(allPosts.reverse());
-  //   };
-  //   getAllPosts();
-  // }, []);
+  useEffect(() => {
+    const getAllPosts = async () => {
+      const allPosts = await fetchPosts();
+      setPosts(allPosts.reverse());
+    };
+    getAllPosts();
+  }, []);
   return (
     <>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const filteredPosts = posts.filter((post) =>
+            postMatches(post, searchTerm)
+          );
+          setFilteredPosts(filteredPosts);
+          setSearchTerm("");
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        ></input>
+        <button type="submit">Search</button>
+      </form>
       <h1>Posts</h1>
       {localStorage.getItem("token") ? (
         <Link to="CreatePost">
@@ -34,17 +74,31 @@ const Post = ({
         </Link>
       ) : null}
       <div class="cardField">
-        {posts.map((post, i) => {
-          // console.log("Post: ", post);
+        {postsToDisplay.map((post, i) => {
+          console.log("Post: ", post);
           return (
-            <div class="postCard" key={i}>
-              <div class="title">{post.title}</div>
-              <div class="author">{post.author.username}</div>
-              <div class="description">{post.description}</div>
-              <div class="price">{post.price}</div>
-              <div class="location">{post.location}</div>
-              <div class="willDeliver">
-                {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
+            <div className="postCard" key={i}>
+              <div className="title">{post.title}</div>
+              <div className="author">
+                Owner:
+                <div id="author">{post.author.username}</div>
+              </div>
+              <div className="description">
+                Description:
+                <div id="description">{post.description}</div>
+              </div>
+              <div className="location">
+                Location:
+                <div id="location">{post.location}</div>
+              </div>
+              <div className="priceAndWD">
+                <div className="price">
+                  Price:
+                  <div id="price">{post.price}</div>
+                </div>
+                <div className="willDeliver">
+                  {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
+                </div>
               </div>
               {localStorage.getItem("username") === post.author.username ? (
                 /*<EditPost setToken={setToken} post={post} postId={post._id} />*/

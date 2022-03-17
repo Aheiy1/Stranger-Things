@@ -36,59 +36,60 @@ const CreatePost = ({ posts, setPosts }) => {
       console.log(result, "result");
       if (result.success) {
         //Display Error
-        setPosts([result.data.post, ...posts]);
+        setPosts([...posts, result.data.post]);
       }
     } catch (error) {
       console.error("Error: ", error);
-    } finally {
-      setTitle("");
-      setDescription("");
-      setPrice("");
-      setWillDeliver(false);
-      history.push("/");
     }
+    setTitle("");
+    setDescription("");
+    setPrice("");
+    setWillDeliver(false);
+    history.push("/");
   };
   return (
     <div>
-      <form id="newPost" onSubmit={userSubmit}>
+      <form className="postCard" onSubmit={userSubmit}>
         <input
+          className="title"
           type="text"
           placeholder="title"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
         ></input>
         <input
+          className="description"
           type="text"
           placeholder="description"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         ></input>
-        <span className="input">
-          <input
-            name="price"
-            type="text"
-            placeholder="price"
-            value={price}
-            onChange={(event) => setPrice(event.target.value)}
-          />
-        </span>
-        <span className="input">
-          <input
-            name="location"
-            type="text"
-            placeholder="location"
-            value={location}
-            onChange={(event) => setLocation(event.target.value)}
-          />
-        </span>
         <input
-          type="checkbox"
-          id="willDeliver"
-          value={willDeliver}
-          onChange={(event) => setWillDeliver(event.target.checked)}
-        ></input>
-        <label> Will Deliver?</label>
-        <button type="submit">Submit</button>
+          className="price"
+          type="text"
+          placeholder="price"
+          value={price}
+          onChange={(event) => setPrice(event.target.value)}
+        />
+        <input
+          className="location"
+          type="text"
+          placeholder="location"
+          value={location}
+          onChange={(event) => setLocation(event.target.value)}
+        />
+        <div className="checkbox">
+          <input
+            type="checkbox"
+            id="willDeliver"
+            value={willDeliver}
+            onChange={(event) => setWillDeliver(event.target.checked)}
+          ></input>
+          <label> Will Deliver?</label>
+        </div>
+        <div className="cardBtn">
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );

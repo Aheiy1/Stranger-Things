@@ -1,5 +1,4 @@
 import React from "react";
-import { getUserId } from "../api/users";
 import { removePost } from "../api/posts";
 
 const DeletePost = ({ posts, setPosts, postId }) => {

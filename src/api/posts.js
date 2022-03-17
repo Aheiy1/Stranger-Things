@@ -1,15 +1,15 @@
 export const BASE_URL = "https://strangers-things.herokuapp.com";
 export const key = "/2202-FTB-ET-WEB-FT";
 
-export const fetchPosts = async () => {
-  const response = await fetch(`${BASE_URL}/api${key}/posts`);
-  const { data } = await response.json();
-  return data.posts;
-};
+// export const fetchPosts = async () => {
+//   const response = await fetch(`${BASE_URL}/api${key}/posts`);
+//   const { data } = await response.json();
+//   return data.posts;
+// };
 
-export const fetchMyPosts = async () => {
-  const token = localStorage.getItem("token")
-  const response = await fetch(`${BASE_URL}/api${key}/posts`,{
+export const fetchPosts = async () => {
+  const token = localStorage.getItem("token");
+  const response = await fetch(`${BASE_URL}/api${key}/posts`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export const fetchMyPosts = async () => {
   });
 
   const { data } = await response.json();
-  console.log(data.posts, "data posts")
+  console.log(data.posts, "data posts");
   return data.posts;
 };
 
@@ -73,12 +73,12 @@ export const sendMessage = async (postId, token, content) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        message : {
-          content
-        }
+        message: {
+          content,
+        },
       }),
     }
   );

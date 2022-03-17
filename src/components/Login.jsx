@@ -13,7 +13,6 @@ const Login = ({ setToken }) => {
     try {
       const result = await fetchLoginResults(username, password);
       if (result.success) {
-        //Display Error
         localStorage.setItem("username", username);
         localStorage.setItem("token", result.data.token);
         setToken(result.data.token);

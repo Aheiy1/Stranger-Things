@@ -1,16 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {
-  Login,
-  Posts,
-  SignUp,
-  LogOut,
-  CreatePost,
-  Profile,
-  WriteMessage,
-  Navbar,
-} from "./index.js";
-import { Switch, useHistory, Link, Route } from "react-router-dom";
+import { Login, Posts, SignUp, CreatePost, Profile, Navbar } from "./index.js";
+import { Switch, Route } from "react-router-dom";
 import { fetchUser } from "../api/users";
 import { fetchPosts } from "../api/posts";
 
@@ -40,7 +31,7 @@ const Main = () => {
     getAllPosts();
     // console.log("Main posts: ", posts);
   }, []);
-// console.log(posts, "posts")
+  // console.log(posts, "posts")
   return (
     <>
       <Navbar />

@@ -6,11 +6,11 @@ import { sendMessage } from "../api/posts";
 const WriteMessage = ({ postId, token, setWriteMessage, writeMessage }) => {
   const [message, setMessage] = useState("");
   const button = writeMessage.button;
-  const storedToken = localStorage.getItem("token")
+  const storedToken = localStorage.getItem("token");
 
   const userSubmit = async (e) => {
     e.preventDefault();
-    console.log(postId, storedToken, message , "postid token message")
+    console.log(postId, storedToken, message, "postid token message");
     try {
       const result = await sendMessage(postId, storedToken, message);
       if (result.success) {
@@ -20,6 +20,7 @@ const WriteMessage = ({ postId, token, setWriteMessage, writeMessage }) => {
     } catch (error) {
       //popup could not deliver message}
     }
+    setMessage("");
   };
 
   const ternaryFunction = () => {

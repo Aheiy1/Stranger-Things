@@ -13,6 +13,7 @@ const Navbar = () => {
           Profile
         </Link>
       </div>
+      <h1>Stranger's Things</h1>
       {!localStorage.getItem("token") ? (
         <div class="btn">
           <Link class="log" to="/Login">
