@@ -51,17 +51,19 @@ export const removePost = async (postId, token) => {
   return data;
 };
 
-export const sendMessage = async (postId, token, message) => {
+export const sendMessage = async (postId, token, content) => {
   const response = await fetch(
     `${BASE_URL}/api${key}/posts/${postId}/messages`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
-        message
+        message : {
+          content
+        }
       }),
     }
   );

@@ -24,7 +24,7 @@ const Profile = ({ setToken, post, posts, setPosts, postId, userObj }) => {
         <h1 className="welcomeText">
           {`Welcome ${localStorage.getItem("username")}`}
         </h1>
-        <h2>{"Messages to me:"}</h2>
+        <h2>{"My Posts:"}</h2>
         {myPosts.map((myPost) => {
           return (
             <>

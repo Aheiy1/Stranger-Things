@@ -37,6 +37,7 @@ nav {
 .postCard {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: rgb(238, 238, 238);
   border-radius: 1rem;
   margin: 1%;
@@ -63,4 +64,10 @@ nav {
 }
 .description {
   font-size: small;
+}
+
+#message {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }

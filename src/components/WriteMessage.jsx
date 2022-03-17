@@ -6,10 +6,12 @@ import { sendMessage } from "../api/posts";
 const WriteMessage = ({ postId, token, setWriteMessage, writeMessage }) => {
   const [message, setMessage] = useState("");
   const button = writeMessage.button;
+  const storedToken = localStorage.getItem("token")
   const userSubmit = async (e) => {
     e.preventDefault();
+    console.log(postId, storedToken, message , "postid tokenn message")
     try {
-      const result = await sendMessage(postId, token, message);
+      const result = await sendMessage(postId, storedToken, message);
       if (result.success) {
         //popup your message was sent
       }
@@ -25,8 +27,8 @@ const WriteMessage = ({ postId, token, setWriteMessage, writeMessage }) => {
     return true;
   };
   return (
-    <div>
-      {localStorage.getItem("token") ? (
+    <div id = "message">
+      {storedToken ? (
         ternaryFunction() ? (
           <button
             type="button"

@@ -35,7 +35,7 @@ const Post = ({
       ) : null}
       <div class="cardField">
         {posts.map((post, i) => {
-          console.log("Post: ", post);
+          // console.log("Post: ", post);
           return (
             <div class="postCard" key={i}>
               <div class="title">{post.title}</div>
