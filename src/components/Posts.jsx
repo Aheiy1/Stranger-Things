@@ -77,10 +77,8 @@ const Post = ({ setToken, posts, setPosts }) => {
                 <div id="location">{post.location}</div>
               </div>
               <div className="priceAndWD">
-                <div className="price">
-                  Price:
-                  <div id="price">{post.price}</div>
-                </div>
+                <div className="price">Price:</div>
+                <div id="price">{post.price}</div>
                 <div className="willDeliver">
                   {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
                 </div>

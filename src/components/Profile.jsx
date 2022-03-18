@@ -11,7 +11,6 @@ const Profile = ({ posts }) => {
         (post) => post.author.username === `${storedName}`
       );
       setMyPosts(filteredResult);
-      console.log(myPosts, "Myposts");
     } catch (error) {
       console.error(error);
     }
@@ -46,10 +45,8 @@ const Profile = ({ posts }) => {
                       <div id="location">{myPost.location}</div>
                     </div>
                     <div className="priceAndWD">
-                      <div className="price">
-                        Price:
-                        <div id="price">{myPost.price}</div>
-                      </div>
+                      <div className="price">Price:</div>
+                      <div id="price">{myPost.price}</div>
                     </div>
                     <div className="willDeliver">
                       {myPost.willDeliver ? "Will Deliver" : "Will Not Deliver"}
