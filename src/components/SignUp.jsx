@@ -6,16 +6,17 @@ const SignUp = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   let history = useHistory();
+  
   const userSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const result = await registerUser(username, password);
       if (result.success) {
+        localStorage.getItem("token", result.data.token);
+        console.log(result);
+        setToken(result.data.token);
       }
-      localStorage.setItem("token", result.data.token);
-      console.log(result);
-      setToken(result.data.token);
     } catch (error) {
       console.error("Error: ", error);
     } finally {

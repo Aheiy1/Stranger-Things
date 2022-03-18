@@ -4,28 +4,28 @@ import { LogOut } from "./index.js";
 
 const Navbar = () => {
   return (
-    <nav className="nav-bar">
-      <div className="lnk">
-        <Link className="link" to="/">
+    <nav class="nav-bar">
+      <div class="lnk">
+        <Link class="link" to="/">
           Home
         </Link>
-        <Link className="link" to="/Profile">
+        <Link class="link" to="/Profile">
           Profile
         </Link>
       </div>
       <h1>Stranger's Things</h1>
       {!localStorage.getItem("token") ? (
-        <div className="btn">
-          <Link className="log" to="/Login">
+        <div class="btn">
+          <Link class="log" to="/Login">
             <button type="button">Login</button>
           </Link>
-          <Link className="log" to="/SignUp">
+          <Link class="log" to="/SignUp">
             <button type="button">SignUp</button>
           </Link>
         </div>
       ) : (
-        <div className="btn">
-          <Link className="log" to="/LogOut">
+        <div class="btn">
+          <Link class="log" to="/LogOut">
             <LogOut />
           </Link>
         </div>
