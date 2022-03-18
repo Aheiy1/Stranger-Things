@@ -12,7 +12,6 @@ const SignUp = ({ setToken }) => {
     try {
       const result = await registerUser(username, password);
       if (result.success) {
-        //Display Error
       }
       localStorage.setItem("token", result.data.token);
       console.log(result);

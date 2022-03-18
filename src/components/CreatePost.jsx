@@ -9,20 +9,11 @@ const CreatePost = ({ posts, setPosts }) => {
   const [location, setLocation] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
   let history = useHistory();
-  // const isChecked = () => {
-  //   let checkbox = document.querySelector("#willDeliver");
-  //   if (checkbox) {
-  //     let query = setWillDeliver(true);
-  //     console.log(query, "query");
-  //     return query;
-  //   }
-  // };
 
   const userSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // isChecked();
       console.log(localStorage.getItem("token"));
       const result = await newPost(
         localStorage.getItem("token"),
@@ -35,7 +26,6 @@ const CreatePost = ({ posts, setPosts }) => {
       console.log(willDeliver, "will you deliver");
       console.log(result, "result");
       if (result.success) {
-        //Display Error
         setPosts([...posts, result.data.post]);
       }
     } catch (error) {

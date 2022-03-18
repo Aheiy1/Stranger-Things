@@ -1,31 +1,31 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
-import { Profile, Login, SignUp, LogOut } from "./index.js";
+import { Link } from "react-router-dom";
+import { LogOut } from "./index.js";
 
 const Navbar = () => {
   return (
     <nav className="nav-bar">
-      <div class="lnk">
-        <Link class="link" to="/">
+      <div className="lnk">
+        <Link className="link" to="/">
           Home
         </Link>
-        <Link class="link" to="/Profile">
+        <Link className="link" to="/Profile">
           Profile
         </Link>
       </div>
       <h1>Stranger's Things</h1>
       {!localStorage.getItem("token") ? (
-        <div class="btn">
-          <Link class="log" to="/Login">
+        <div className="btn">
+          <Link className="log" to="/Login">
             <button type="button">Login</button>
           </Link>
-          <Link class="log" to="/SignUp">
+          <Link className="log" to="/SignUp">
             <button type="button">SignUp</button>
           </Link>
         </div>
       ) : (
-        <div class="btn">
-          <Link class="log" to="/LogOut">
+        <div className="btn">
+          <Link className="log" to="/LogOut">
             <LogOut />
           </Link>
         </div>

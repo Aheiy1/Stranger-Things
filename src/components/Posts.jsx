@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CreatePost, DeletePost, WriteMessage } from "./index.js";
+import { DeletePost, WriteMessage } from "./index.js";
 import { fetchPosts } from "../api/posts";
 
-const Post = ({
-  setToken,
-  post,
-  setPost,
-  postId,
-  setPostId,
-  posts,
-  setPosts,
-}) => {
+const Post = ({ setToken, posts, setPosts }) => {
   const [writeMessage, setWriteMessage] = useState({
     idx: undefined,
     button: true,
@@ -29,16 +21,9 @@ const Post = ({
     } else {
       return false;
     }
-
-    // return true if any of the fields you want to check against include the text
-    // strings have an .includes() method
   }
 
   const postsToDisplay = filteredPosts.length ? filteredPosts : posts;
-
-  // then, in our jsx below... map over postsToDisplay instead of posts
-
-  // const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const getAllPosts = async () => {

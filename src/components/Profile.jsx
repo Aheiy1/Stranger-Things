@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DeletePost } from "./index.js";
-import { fetchMyPosts } from "../api/posts.js";
-//messages should be displayed
-//  link to post message is from
 
-const Profile = ({ setToken, post, posts, setPosts, postId, userObj }) => {
+const Profile = ({ posts }) => {
   const [myPosts, setMyPosts] = useState([]);
   const storedName = localStorage.getItem("username");
 
@@ -13,10 +10,7 @@ const Profile = ({ setToken, post, posts, setPosts, postId, userObj }) => {
       const filteredResult = posts.filter(
         (post) => post.author.username === `${storedName}`
       );
-
-      // const result = await fetchPosts();
       setMyPosts(filteredResult);
-
       console.log(myPosts, "Myposts");
     } catch (error) {
       console.error(error);
